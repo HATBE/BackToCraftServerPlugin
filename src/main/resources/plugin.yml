@@ -1,0 +1,10 @@
+name: BackToCraftServerPlugin
+version: '${project.version}'
+main: ch.hatbe2113.backToCraftServerPlugin.Main
+api-version: 1.19
+authors: [ hatbe2113 ]
+description: This plugin is a whole economy server
+website: https://hatbe.ch
+commands:
+  spawn:
+    description: spawn command
