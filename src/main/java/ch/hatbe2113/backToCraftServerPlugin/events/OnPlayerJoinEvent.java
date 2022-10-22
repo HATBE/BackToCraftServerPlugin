@@ -1,6 +1,7 @@
 package ch.hatbe2113.backToCraftServerPlugin.events;
 
 import ch.hatbe2113.backToCraftServerPlugin.Main;
+import ch.hatbe2113.backToCraftServerPlugin.handlers.SpawnHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,7 +22,7 @@ public class OnPlayerJoinEvent implements Listener {
 
         if(!eventPlayer.hasPlayedBefore()) {
             // If player has not joined before
-            eventPlayer.teleport(main.getSpawnLocation());
+            eventPlayer.teleport(SpawnHandler.getLocation(main));
         }
     }
 }

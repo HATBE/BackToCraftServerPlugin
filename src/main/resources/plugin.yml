@@ -7,4 +7,6 @@ description: This plugin is a whole economy server
 website: https://hatbe.ch
 commands:
   spawn:
-    description: spawn command
+    description: teleports player to spawn location
+  setspawn:
+    description: sets spawn location
