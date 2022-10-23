@@ -16,6 +16,7 @@ public final class Main extends JavaPlugin {
     private PluginManager plManager = Bukkit.getPluginManager();
     private ConfigHandler pluginConfig = new ConfigHandler(this);
     private CustomConfigHandler locationsConfig = new CustomConfigHandler(this, "locations");
+    private CustomConfigHandler userBase = new CustomConfigHandler(this, "userBase");
 
     @Override
     public void onEnable() {
@@ -46,7 +47,6 @@ public final class Main extends JavaPlugin {
 
         getCommand("spawn").setExecutor(new SpawnCommand(this));
         getCommand("setspawn").setExecutor(new SetSpawnCommand(this));
-
     }
 
     private void registerEvents() {
@@ -83,5 +83,9 @@ public final class Main extends JavaPlugin {
 
     public CustomConfigHandler getLocationsConfig() {
         return locationsConfig;
+    }
+
+    public CustomConfigHandler getUserBase() {
+        return userBase;
     }
 }

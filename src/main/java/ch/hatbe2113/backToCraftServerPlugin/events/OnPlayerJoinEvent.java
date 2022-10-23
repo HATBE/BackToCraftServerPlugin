@@ -7,6 +7,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.UUID;
+
 public class OnPlayerJoinEvent implements Listener {
 
     private Main main;
@@ -23,6 +27,15 @@ public class OnPlayerJoinEvent implements Listener {
         if(!eventPlayer.hasPlayedBefore()) {
             // If player has not joined before, tp to custom spawn location
             eventPlayer.teleport(SpawnHandler.getLocation(main));
+
+            // write data to playerbase
+            String username = eventPlayer.getName();
+            String uuid = eventPlayer.getUniqueId().toString();
+            int joindate = (int) Instant.now().getEpochSecond();;
+
+            main.getUserBase().set(String.format("user.%s.username", uuid), username);
+            main.getUserBase().set(String.format("user.%s.joindate", uuid), joindate);
+            main.getUserBase().save();
         }
     }
 }

@@ -13,7 +13,7 @@ public class SpawnHandler {
 
         if(!config.getConfig().contains(configRootPath)) {
             // fallback if spawn location does not exist in configfile
-            Bukkit.getLogger().warning(String.format("Path \"%s\" does not exist", configRootPath));
+            Bukkit.getLogger().warning(String.format("Path \"%s.spawn\" does not exist in config", configRootPath));
             return false;
         }
         return true;
@@ -40,7 +40,7 @@ public class SpawnHandler {
     }
 
     public static void setLocation(Main main, Location location) {
-        ConfigHandler config = main.getPluginConfig();
+        ConfigHandler config = main.getLocationsConfig();
 
         // get location parts from location
         String world = location.getWorld().getName();
@@ -57,8 +57,9 @@ public class SpawnHandler {
         config.set(String.format("%sx", configRootPath), x);
         config.set(String.format("%sy", configRootPath), y);
         config.set(String.format("%sz", configRootPath), z);
-        config.set(String.format("%pitch", configRootPath), pitch);
+        config.set(String.format("%spitch", configRootPath), pitch);
         config.set(String.format("%syaw", configRootPath), yaw);
+
         config.save();
     }
 }

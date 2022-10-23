@@ -34,7 +34,7 @@ public class SetSpawnCommand implements CommandExecutor {
         }
 
         // if player has not the right permission, return error and exit
-        if(!(senderPlayer.hasPermission("btc.setspawn"))) {
+        if(!(senderPlayer.hasPermission("btc.spawn.set"))) {
             senderPlayer.sendMessage(String.format("%sYou don't have the permissions to execute this command", ChatColor.DARK_RED));
             return false;
         }
