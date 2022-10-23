@@ -19,6 +19,7 @@ public class SetSpawnCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        // if sender is no player, return error and exit
         if(!(sender instanceof Player)) {
             sender.sendMessage(String.format("%sYou have to be a Player to execute this command!", ChatColor.DARK_RED));
             return false;
@@ -26,19 +27,21 @@ public class SetSpawnCommand implements CommandExecutor {
 
         senderPlayer = (Player) sender;
 
+        // if wrong command format is given, return error and exit
         if(args.length != 0) {
             senderPlayer.sendMessage(String.format("%sYou are using the wrong format! Use %s", ChatColor.DARK_RED, command.getName()));
             return false;
         }
 
+        // if player has not the right permission, return error and exit
         if(!(senderPlayer.hasPermission("btc.setspawn"))) {
             senderPlayer.sendMessage(String.format("%sYou don't have the permissions to execute this command", ChatColor.DARK_RED));
             return false;
         }
 
+        // set spawn location in spawnhandler
         SpawnHandler.setLocation(main, senderPlayer.getLocation());
         senderPlayer.sendMessage(String.format("%sSpawn location set", ChatColor.AQUA));
-
         return true;
     }
 }

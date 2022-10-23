@@ -5,6 +5,7 @@ import ch.hatbe2113.backToCraftServerPlugin.commands.spawn.SpawnCommand;
 import ch.hatbe2113.backToCraftServerPlugin.events.OnPlayerRespawnEvent;
 import ch.hatbe2113.backToCraftServerPlugin.events.OnPlayerJoinEvent;
 import ch.hatbe2113.backToCraftServerPlugin.io.config.ConfigHandler;
+import ch.hatbe2113.backToCraftServerPlugin.io.config.CustomConfigHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,6 +15,7 @@ public final class Main extends JavaPlugin {
     public static final String PLUGIN_NAME = "BackToCraftServerPlugin";
     private PluginManager plManager = Bukkit.getPluginManager();
     private ConfigHandler pluginConfig = new ConfigHandler(this);
+    private CustomConfigHandler locationsConfig = new CustomConfigHandler(this, "locations");
 
     @Override
     public void onEnable() {
@@ -77,5 +79,9 @@ public final class Main extends JavaPlugin {
 
     public ConfigHandler getPluginConfig() {
         return pluginConfig;
+    }
+
+    public CustomConfigHandler getLocationsConfig() {
+        return locationsConfig;
     }
 }

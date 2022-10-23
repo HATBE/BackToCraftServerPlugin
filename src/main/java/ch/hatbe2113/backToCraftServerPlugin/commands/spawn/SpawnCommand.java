@@ -20,6 +20,7 @@ public class SpawnCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        // if sender is no player, return error and exit
         if(!(sender instanceof Player)) {
             sender.sendMessage(String.format("%sYou have to be a Player to execute this command!", ChatColor.DARK_RED));
             return false;
@@ -27,6 +28,7 @@ public class SpawnCommand implements CommandExecutor {
 
         senderPlayer = (Player) sender;
 
+        // if wrong command format is given, return error and exit
         if(args.length != 0) {
             senderPlayer.sendMessage(String.format("%sYou are using the wrong format! Use %s", ChatColor.DARK_RED, command.getName()));
             return false;

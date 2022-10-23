@@ -21,7 +21,7 @@ public class OnPlayerJoinEvent implements Listener {
         eventPlayer = e.getPlayer();
 
         if(!eventPlayer.hasPlayedBefore()) {
-            // If player has not joined before
+            // If player has not joined before, tp to custom spawn location
             eventPlayer.teleport(SpawnHandler.getLocation(main));
         }
     }
