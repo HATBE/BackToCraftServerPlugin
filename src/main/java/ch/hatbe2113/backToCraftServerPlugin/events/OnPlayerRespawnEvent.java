@@ -18,10 +18,7 @@ public class OnPlayerRespawnEvent implements Listener {
 
         @EventHandler
         public void OnPlayerRespawn(PlayerRespawnEvent e) {
-            eventPlayer = e.getPlayer();
-            // if player has no bed "respawn location" teleport player to custom spawn (not mc world spawn)
-            if(eventPlayer.getBedSpawnLocation() == null) {
-                e.setRespawnLocation(SpawnHandler.getLocation(main)); // set respawn location to custom world spawn
-            }
+            // handle player in spawnhandler
+            SpawnHandler.onPlayerRespawn(main, e);
         }
 }

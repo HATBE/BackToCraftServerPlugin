@@ -4,6 +4,9 @@ import ch.hatbe2113.backToCraftServerPlugin.Main;
 import ch.hatbe2113.backToCraftServerPlugin.io.config.ConfigHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class SpawnHandler {
     private static String configRootPath = "locations.spawn.location.";
@@ -61,5 +64,18 @@ public class SpawnHandler {
         config.set(String.format("%syaw", configRootPath), yaw);
 
         config.save();
+    }
+
+    public static void onPlayerJoin(Main main, PlayerJoinEvent e) {
+        if(e.getPlayer().hasPlayedBefore()) {
+            e.getPlayer().teleport(getLocation(main));
+        }
+    }
+
+    public static void onPlayerRespawn(Main main, PlayerRespawnEvent e) {
+        // if player has no bed "respawn location" teleport player to custom spawn (not mc world spawn)
+        if(e.getPlayer().getBedSpawnLocation() == null) {
+            e.setRespawnLocation(SpawnHandler.getLocation(main)); // set respawn location to custom world spawn
+        }
     }
 }
