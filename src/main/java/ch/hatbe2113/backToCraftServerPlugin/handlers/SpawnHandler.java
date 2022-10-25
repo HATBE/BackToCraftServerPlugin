@@ -14,7 +14,7 @@ public class SpawnHandler {
     public static boolean locationExists(Main main) {
         ConfigHandler config = main.getLocationsConfig();
 
-        if(!config.getConfig().contains(configRootPath)) {
+        if(!config.contains(configRootPath)) {
             // fallback if spawn location does not exist in configfile
             Bukkit.getLogger().warning(String.format("Path \"%s.spawn\" does not exist in config", configRootPath));
             return false;
@@ -67,14 +67,19 @@ public class SpawnHandler {
     }
 
     public static void onPlayerJoin(Main main, PlayerJoinEvent e) {
-        if(e.getPlayer().hasPlayedBefore()) {
-            e.getPlayer().teleport(getLocation(main));
+        Player ePlayer = e.getPlayer();
+
+        // if its players first join, tp him to spawn
+        if(ePlayer.hasPlayedBefore()) {
+            ePlayer.teleport(getLocation(main));
         }
     }
 
     public static void onPlayerRespawn(Main main, PlayerRespawnEvent e) {
+        Player ePlayer = e.getPlayer();
+
         // if player has no bed "respawn location" teleport player to custom spawn (not mc world spawn)
-        if(e.getPlayer().getBedSpawnLocation() == null) {
+        if(ePlayer.getBedSpawnLocation() == null) {
             e.setRespawnLocation(SpawnHandler.getLocation(main)); // set respawn location to custom world spawn
         }
     }

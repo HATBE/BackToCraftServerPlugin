@@ -9,16 +9,16 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class OnPlayerRespawnEvent implements Listener {
 
-        private Main main;
-        private Player eventPlayer;
+    private Main main;
+    private Player eventPlayer;
 
-        public OnPlayerRespawnEvent(Main main) {
-            this.main = main;
-        }
+    public OnPlayerRespawnEvent(Main main) {
+        this.main = main;
+    }
 
-        @EventHandler
-        public void OnPlayerRespawn(PlayerRespawnEvent e) {
-            // handle player in spawnhandler
-            SpawnHandler.onPlayerRespawn(main, e);
-        }
+    @EventHandler
+    public void OnPlayerRespawn(PlayerRespawnEvent e) {
+        // handle player in spawnhandler
+        SpawnHandler.onPlayerRespawn(main, e);
+    }
 }

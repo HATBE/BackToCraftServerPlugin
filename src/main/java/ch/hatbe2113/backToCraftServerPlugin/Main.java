@@ -10,17 +10,19 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Main extends JavaPlugin {
+import java.util.logging.Logger;
 
+public final class Main extends JavaPlugin {
     public static final String PLUGIN_NAME = "BackToCraftServerPlugin";
+    private Logger pLogger = Bukkit.getLogger();
     private PluginManager plManager = Bukkit.getPluginManager();
     private ConfigHandler pluginConfig = new ConfigHandler(this);
     private CustomConfigHandler locationsConfig = new CustomConfigHandler(this, "locations");
-    private CustomConfigHandler userBase = new CustomConfigHandler(this, "userBase");
+    private CustomConfigHandler playerBase = new CustomConfigHandler(this, "playerBase");
 
     @Override
     public void onEnable() {
-        Bukkit.getLogger().info(String.format("%s starting up", PLUGIN_NAME));
+        getpLogger().info(String.format("%s starting up", PLUGIN_NAME));
 
         // check if something is wrong
         // if something was detected, disable plugin
@@ -29,7 +31,7 @@ public final class Main extends JavaPlugin {
             return;
         }
 
-        buildDefaultConfig();
+        buildDefaultConfigs();
 
         registerEvents();
         registerCommands();
@@ -39,13 +41,16 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        Bukkit.getLogger().info(String.format("%s shutting down", PLUGIN_NAME));
+        getpLogger().info(String.format("%s shutting down", PLUGIN_NAME));
     }
 
     private void registerCommands() {
         // in this function every command is registered
 
+        // /spawn
         getCommand("spawn").setExecutor(new SpawnCommand(this));
+        // /setspawn
+        // permissions: btc.spawn.set
         getCommand("setspawn").setExecutor(new SetSpawnCommand(this));
     }
 
@@ -55,7 +60,7 @@ public final class Main extends JavaPlugin {
         plManager.registerEvents(new OnPlayerRespawnEvent(this), this);
     }
 
-    private void buildDefaultConfig() {
+    private void buildDefaultConfigs() {
 
     }
 
@@ -85,7 +90,11 @@ public final class Main extends JavaPlugin {
         return locationsConfig;
     }
 
-    public CustomConfigHandler getUserBase() {
-        return userBase;
+    public CustomConfigHandler getPlayerBase() {
+        return playerBase;
+    }
+
+    public Logger getpLogger() {
+        return pLogger;
     }
 }

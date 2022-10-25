@@ -58,4 +58,8 @@ public class ConfigHandler {
         return config.getInt(path);
     }
 
+    public boolean contains(String path) {
+        return config.contains(path);
+    }
+
 }
