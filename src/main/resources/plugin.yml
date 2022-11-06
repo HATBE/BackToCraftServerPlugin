@@ -10,3 +10,30 @@ commands:
     description: teleports player to spawn location
   setspawn:
     description: sets spawn location
+  workbench:
+    aliases: [wb, workb]
+    description: workbench command
+  enderchest:
+    aliases: [ec, enderc]
+    description: enderchest command
+  invsee:
+    aliases: [inventorysee]
+    description: opens inventory of other player
+  gms:
+    aliases: [gamemodes]
+    description: changes Gamemode to survival
+  gma:
+    aliases: [gamemodea]
+    description: changes Gamemode to adventure
+  gmsp:
+    aliases: [gamemodesp]
+    description: changes Gamemode to spectator
+  gmc:
+    aliases: [gamemodec]
+    description: changes Gamemode to creative
+  fly:
+    aliases: [flying]
+    description: toggles flight mode
+  heal:
+    aliases: [healing]
+    description: heals player

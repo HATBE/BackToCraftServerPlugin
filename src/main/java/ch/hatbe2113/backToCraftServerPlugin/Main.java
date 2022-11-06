@@ -1,5 +1,10 @@
 package ch.hatbe2113.backToCraftServerPlugin;
 
+import ch.hatbe2113.backToCraftServerPlugin.commands.*;
+import ch.hatbe2113.backToCraftServerPlugin.commands.gamemode.GmaCommand;
+import ch.hatbe2113.backToCraftServerPlugin.commands.gamemode.GmcCommand;
+import ch.hatbe2113.backToCraftServerPlugin.commands.gamemode.GmsCommand;
+import ch.hatbe2113.backToCraftServerPlugin.commands.gamemode.GmspCommand;
 import ch.hatbe2113.backToCraftServerPlugin.commands.spawn.SetSpawnCommand;
 import ch.hatbe2113.backToCraftServerPlugin.commands.spawn.SpawnCommand;
 import ch.hatbe2113.backToCraftServerPlugin.events.OnPlayerRespawnEvent;
@@ -52,6 +57,33 @@ public final class Main extends JavaPlugin {
         // /setspawn
         // permissions: btc.spawn.set
         getCommand("setspawn").setExecutor(new SetSpawnCommand(this));
+        // /wb
+        // permissions: btc.wb
+        getCommand("workbench").setExecutor(new WorkbenchCommand());
+        // /ec *<player>
+        // permissions: btc.ec && btc.ec.others
+        getCommand("enderchest").setExecutor(new EnderchestCommand());
+        // /ec *<player>
+        // permissions: btc.invsee
+        getCommand("invsee").setExecutor(new InvseeCommand());
+        // /gms *<player>
+        // permissions: btc.gms && btc.gms.others
+        getCommand("gms").setExecutor(new GmsCommand());
+        // /gmc *<player>
+        // permissions: btc.gmc && btc.gmc.others
+        getCommand("gmc").setExecutor(new GmcCommand());
+        // /gma *<player>
+        // permissions: btc.gma && btc.gma.others
+        getCommand("gma").setExecutor(new GmaCommand());
+        // /gmsp *<player>
+        // permissions: btc.gmsp && btc.gmsp.others
+        getCommand("gmsp").setExecutor(new GmspCommand());
+        // /fly *<player>
+        // permissions: btc.fly && btc.fly.others
+        getCommand("fly").setExecutor(new FlyCommand());
+        // /heal *<player>
+        // permissions: btc.heal && btc.heal.others
+        getCommand("heal").setExecutor(new HealCommand());
     }
 
     private void registerEvents() {
